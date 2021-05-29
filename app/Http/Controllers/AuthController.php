@@ -11,13 +11,19 @@ class AuthController extends Controller
 {
     public function register(Request $request) {
         $fields = $request->validate([
-            'name' => 'required|string',
+            'first_name' => 'required|string',
+            'middle_name' => 'required|string',
+            'last_name' => 'required|string',
+            'phone_number' => 'required|string',
             'email' => 'required|string|unique:users,email',
             'password' => 'required|string|confirmed'
         ]);
 
         $user = User::create([
-            'name' => $fields['name'],
+            'first_name' => $fields['first_name'],
+            'middle_name' => $fields['middle_name'],
+            'last_name' => $fields['last_name'],
+            'phone_number' => $fields['phone_number'],
             'email' => $fields['email'],
             'password' => bcrypt($fields['password'])
         ]);
@@ -44,7 +50,7 @@ class AuthController extends Controller
         // Check password
         if(!$user || !Hash::check($fields['password'], $user->password)) {
             return response([
-                'message' => 'Bad creds'
+                'message' => 'Incorrect credentials given!'
             ], 401);
         }
 

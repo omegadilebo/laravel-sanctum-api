@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Applicant;
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class ApplicantController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::all();
+        return Applicant::all();
     }
 
     /**
@@ -26,12 +26,17 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'slug' => 'required',
-            'price' => 'required'
+            'applicant_name' => 'required',
+            'birthday' => 'required',
+            'grade_level' => 'required',
+            'guardian_name' => 'required',
+            'guardian_type' => 'required',
+            'country' => 'required',
+            'address1' => 'required',
+            'postal_code' => 'required'
         ]);
 
-        return Product::create($request->all());
+        return Applicant::create($request->all());
     }
 
     /**
@@ -42,7 +47,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return Product::find($id);
+        return Applicant::find($id);
     }
 
     /**
@@ -67,7 +72,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        return Product::destroy($id);
+        return Applicant::destroy($id);
     }
 
      /**
@@ -78,6 +83,6 @@ class ProductController extends Controller
      */
     public function search($name)
     {
-        return Product::where('name', 'like', '%'.$name.'%')->get();
+        return Applicant::where('first_name', 'like', '%'.$name.'%')->get();
     }
 }
