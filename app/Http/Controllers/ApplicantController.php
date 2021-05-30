@@ -83,6 +83,6 @@ class ApplicantController extends Controller
      */
     public function search($name)
     {
-        return Applicant::where('first_name', 'like', '%'.$name.'%')->get();
+        return Applicant::where('applicant_name', 'like', '%'.$name.'%')->get();
     }
 }
