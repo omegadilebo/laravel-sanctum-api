@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ApplicantController;
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,16 +21,16 @@ use Illuminate\Support\Facades\Route;
 // Public routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/applicants', [ApplicantController::class, 'index']);
-Route::get('/applicants/{id}', [ApplicantController::class, 'show']);
-Route::get('/applicants/search/{name}', [ApplicantController::class, 'search']);
+Route::get('/applicantions', [ApplicationController::class, 'index']);
+Route::get('/applicantions/{id}', [ApplicationController::class, 'show']);
+Route::get('/applicantions/search/{name}', [ApplicationController::class, 'search']);
 
 
 // Protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('/applicants', [ApplicantController::class, 'store']);
-    Route::put('/applicants/{id}', [ApplicantController::class, 'update']);
-    Route::delete('/applicants/{id}', [ApplicantController::class, 'destroy']);
+    Route::post('/applicantions', [ApplicationController::class, 'store']);
+    Route::put('/applicantions/{id}', [ApplicationController::class, 'update']);
+    Route::delete('/applicantions/{id}', [ApplicationController::class, 'destroy']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 
